@@ -3,6 +3,5 @@
 return array(
     'ZucchiLayout\Module'                        => __DIR__ . '/Module.php',
     'ZucchiLayout\Controller\AdminController' => __DIR__ . '/src/ZucchiLayout/Controller/AdminController.php',
-    'ZucchiLayout\Entity\Layout' => __DIR__ . '/src/ZucchiLayout/Entity/Layout.php',
     'ZucchiLayout\Event\LayoutListener' => __DIR__ . '/src/ZucchiLayout/Event/LayoutListener.php',
 );
