@@ -39,7 +39,7 @@ class LayoutListener
     public function attach(SharedEventManagerInterface $events)
     {
         $this->listeners[] = $events->attach(
-            'application',
+            'Zend\Mvc\Application',
             MvcEvent::EVENT_RENDER, 
             array($this, 'prepareLayout'),
             -9998

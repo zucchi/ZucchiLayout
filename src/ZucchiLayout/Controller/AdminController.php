@@ -1,6 +1,6 @@
 <?php
 /**
- * ZucchiLayout (http://framework.zend.com/)
+ * ZucchiLayout (http://zucchi.co.uk)
  *
  * @link      http://github.com/zucchi/ZucchiLayout for the canonical source repository
  * @copyright Copyright (c) 2005-2012 Zucchi Limited. (http://zucchi.co.uk)
@@ -20,5 +20,8 @@ use ZucchiAdmin\Controller\AbstractAdminController;
  */
 class AdminController extends AbstractAdminController
 {
-
+    public function indexAction()
+    {
+        
+    }
 }
