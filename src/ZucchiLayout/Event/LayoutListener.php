@@ -4,7 +4,7 @@
  *
  * @link      http://github.com/zucchi/ZucchiLayout for the canonical source repository
  * @copyright Copyright (c) 2005-2012 Zucchi Limited (http://zucchi.co.uk)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @license   http://zucchi.co.uk/legals/bsd-license New BSD License
  */
 
 namespace ZucchiLayout\Event;
@@ -55,6 +55,8 @@ class LayoutListener
     public function prepareLayout(MvcEvent $e)
     {
         $viewModel = $e->getViewModel();
-        $viewModel->setTemplate('layout/default');
+        if (!$viewModel->terminate()) {
+            $viewModel->setTemplate('layout/default');
+        }
     }
 }
