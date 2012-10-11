@@ -1,8 +1,12 @@
 <?php
 return array(
     'controllers' => array(
-        'invokables' => array(
-            'zucchi-layout-admin' => 'ZucchiLayout\Controller\AdminController',
+        'factories' => array(
+            'zucchi-layout-admin' => function($sm) {
+                $controller = new ZucchiLayout\Controller\AdminController();
+                $controller->setOptions($sm->getServiceLocator()->get('zucchilayout.options'));
+                return $controller;
+            }
         ),
     ),
     'navigation' => array(
@@ -10,6 +14,7 @@ return array(
             'layout' => array(
                 'label' => 'Layout',
                 'route' => 'ZucchiAdmin/ZucchiLayout',
+                'action' => 'list',
             ),
         )
     ),
@@ -36,6 +41,25 @@ return array(
             ),
         ),
     ),
+    
+    'service_manager' => array(
+        'invokables' => array(
+            'zucchisecurity.auth' => 'ZucchiSecurity\Authentication\Service',
+            'zucchisecurity.listener' => 'ZucchiSecurity\Event\SecurityListener',
+            'zucchilayout.service' => 'ZucchiLayout\Service\Layout',
+        ),
+        'factories' => array(
+            'zucchilayout.options' => function ($sm) {
+                $config = $sm->get('config');
+                $options = new \ZucchiLayout\Options\LayoutOptions();
+                if (isset($config['ZucchiLayout'])) {
+                    $options->setFromArray($config['ZucchiLayout']);
+                }
+                return $options;
+            },
+        ),
+    ),
+
     'translator' => array(
         'locale' => 'en_GB',
         'translation_patterns' => array(
@@ -48,7 +72,60 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'ZucchiLayout' => __DIR__ . '/../view',
+//            'ZucchiLayout-Layouts' => getcwd() . '/data/zucchi/layout',
+            'ZucchiLayout-View' => __DIR__ . '/../view',
+        ),
+    ),
+    'doctrine' => array(
+        'driver' => array(
+            'zucchilayout_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(realpath(__DIR__ . '/../src/ZucchiLayout/Entity')),
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'ZucchiLayout\Entity' => 'zucchilayout_driver',
+                )
+            )
+        )
+    ),
+    'ZucchiSecurity' => array(
+        'permissions' => array(
+            'map' => array(
+                'ZucchiUser' => array(
+                    'settings' => 'update',
+                    'install' => 'create',
+                ),
+            ),
+            'roles' => array(
+                'layout-manager' => array(
+                    'label' => 'Layout Manager',
+                    'parents'=>array('admin')
+                ),
+            ),
+            'resources' => array(
+                'route' =>array(
+                    'ZucchiAdmin' => array(
+                        'children' => array('ZucchiLayout'),
+                    )
+                ),
+                'module' => array(
+                    'ZucchiLayout',
+                ),
+            ),
+            'rules' => array(
+                array(
+                    'role' => 'layout-manager',
+                    'resource' => array(
+                        'route:ZucchiAdmin/ZucchiLayout',
+                        'module:ZucchiLayout',
+                    ),
+                    'privileges' => array(
+                        'view', 'create', 'update', 'delete',
+                    ),
+                ),
+            )
         ),
     ),
 );

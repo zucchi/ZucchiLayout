@@ -1,0 +1,128 @@
+<style>
+    #layoutImage {
+        padding-top:4px;
+    }
+    #layoutImage img {
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+
+    }
+    #layoutData dl dt {
+        clear:both;
+    }
+    #layoutData dl dl {
+        margin-top: 0;
+        margin-bottom: 3px;
+    }
+    #layoutData dl dl dl dt{
+        float: left;
+        width: 100px;
+        clear: both;
+    }
+    #layoutData dl dl dl dd{
+        width: 200px;
+        float: left;
+    }
+    #layoutData dl dl dl {
+        clear: both;
+    }
+</style>
+<script>
+    (function($j) {
+        var layout = {
+            install: function(layoutKey) {
+                $j.post("<?=$this->url('ZucchiAdmin/ZucchiLayout', array('action'=>'install'))?>",
+                        {layout: layoutKey},
+                        function(data, textStatus) {
+                            if ("success" == textStatus) {
+                                if (data.success) {
+                                    location.href = "   <?=$this->url('ZucchiAdmin/ZucchiLayout', array('action'=>'list'))?>";
+                                } else {
+                                    var msgs = '';
+                                    for (var i in data.messages) {
+                                        msgs += data.messages[i] + "\n";
+                                    }
+                                    alert(msgs);
+                                }
+                            } else {
+
+                            }
+                            console.log(textStatus);
+                            console.log(data);
+                        },'json'
+                );
+            },
+            toDl:function (arr) {
+                var dl = $j("<dl>");
+                $j.each(arr, function (i) {
+                    var dt = $j("<dt>");
+                    if (typeof i !== "number") {
+                        $j(dt).append(i);
+                        $(dl).append(dt)
+                    }
+
+                    var dd = $j("<dd>");
+
+                    if (arr[i] instanceof Array || arr[i] instanceof Object) {
+                        $j(dd).append(layout.toDl(arr[i]));
+                    } else {
+                        $j(dd).append(arr[i]);
+                    }
+                    $(dl).append(dd);
+
+                });
+                return dl;
+            }
+        }
+        $j(document).ready(function(){
+           uploader.bind("FilesAdded", function(up, files) { $j("#layoutData, #layoutImage").html(""); });
+           uploader.bind("FileUploaded", function(up, file, info){
+               var data = JSON.parse(info.response);
+               if  (data.success) {
+                    var install = $j("<button>");
+                    $j(install).attr("id", "installLayout")
+                               .addClass("pull-right btn btn-success")
+                               .html("Install Layout")
+                               .bind("click", function(e){
+                                    layout.install(data.layout.vendor + "-" + data.layout.name);
+                                    e.stopPropagation();
+                                })
+                    $j("#layoutData").append(install);
+
+                    var container = $j("<div>");
+                    var dl = layout.toDl(data.layout)
+                    $j(container).append(dl);
+                    $j("#layoutData").append(container);
+
+                    var img = $j("<img>");
+                    $j(img).attr("src", "/_layout/"+ data.layout.vendor +"-" + data.layout.name + "/layout.png");
+                    $j("#layoutImage").append(img);
+               }
+            });
+        })
+    })(jQuery);
+</script>
+<header><?=$this->translate('Install Layout')?></header>
+<div class="gutter">
+    
+    <div class="row-fluid">
+        <div class="span6">
+            <?=$this->uploader(
+                $this->url('ZucchiAdmin/ZucchiLayout', array('action' => 'upload')),
+                array(
+                    'class' => 'btn btn-primary pull-right',
+                ),
+                array(
+                    'filters' => array(
+                        array('title' => "Layout Files", 'extensions' => 'zip,tar,gz,tgz'),
+                    )
+                )
+            );?>
+            <p><strong>Instructions:</strong> Upload a layout file (zip or tar)</p>
+
+            <div id="layoutImage"></div>
+        </div>
+        <div id="layoutData" class="span6"></div>
+    </div>
+</div>

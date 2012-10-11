@@ -40,7 +40,7 @@ class Module implements
         public function onBootstrap(EventInterface $e)
         {
             $app = $e->getApplication();
-            $events = $app->getEventManager()->getSharedManager();
+            $events = $app->getEventManager();
             $sm = $app->getServiceManager();
             // replace direct instatiation with $sm to get listened already populated with view and db service 
             $layoutListener = $sm->get('zucchilayout.listener');
