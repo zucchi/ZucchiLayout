@@ -100,11 +100,12 @@ class LayoutListener implements ListenerAggregateInterface
 
                 $service = $sm->get('zucchilayout.service');
                 $result = $service->getCurrentLayout();
-                $viewModel->setTemplate($result->folder . '/layout');
+                $layout = $result->folder;
             } catch (\Exception $e) {
-                // nbo layout was found so will fallback to hardcoded layout template
-//                throw new \Exception('No layout was found', 500, $e);
+                // no layout was scheduled so will fallback to hardcoded layout template
+                $layout = $options->getLayout();
             }
+            $viewModel->setTemplate($layout . '/layout');
         }
     }
 
