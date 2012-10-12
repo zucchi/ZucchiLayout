@@ -1,8 +1,10 @@
-**ZucchiLayout**
+ZucchiLayout
+============
 
 Module to allow management and injection of site layouts and schedule layout changes
 
-*Installation*
+Installation
+------------
 
 From the root of your ZF2 Skeleton Application run
 
@@ -16,7 +18,8 @@ This will result in you being able to generate urls such as "/_layout/zucchi-sim
 
 You will also need to copy the ./config/zucchilayout.local.php.dist to your autoload folder and configure to suit.
 
-*Admin*
+Admin
+-----
 
 The module depends on the ZucchiAdmin Module to allow you to manage the layouts.
 
@@ -24,7 +27,8 @@ This will allow you to install new layouts and schedule when they will display f
 
 NB: The scheduling is very simplistic at the moment and will always display the most recent scheduled layout.
 
-*Layouts*
+Layouts
+-------
 
 Layouts can be uploaded using as ZIP or TAR files. The file MUST contain the following in its root
 
@@ -34,7 +38,10 @@ Layouts can be uploaded using as ZIP or TAR files. The file MUST contain the fol
 
 If the layout has its own static assets these must be stored in a folder called assets and can be accessed using the AliasMatch defined above
 
-*Roadmap*
+A VERY simplistic sample layout can be found at ./sample/zucchi-layout.tar.gz
+
+Roadmap
+-------
 
 *    Improve validation for scheduling for conflict management
 *    Add Dependency Management for Layouts
