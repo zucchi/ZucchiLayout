@@ -20,7 +20,7 @@ use Zend\Stdlib\AbstractOptions;
 {
     protected $path = '/data/zucchi/layout/';
     
-    protected $layout = 'zucchi-simple';
+    protected $layout;
 	/**
      * @return the $path
      */

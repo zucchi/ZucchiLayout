@@ -19,6 +19,7 @@
         "zucchi/zucchi": "dev-master",
         "zucchi/admin" : "dev-master",
         "zucchi/doctrine" : "dev-master"
+        "zucchi/uploader" : "dev-master"
     },
     "autoload": {
         "psr-0": {

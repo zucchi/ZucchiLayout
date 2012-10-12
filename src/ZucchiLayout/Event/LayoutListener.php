@@ -105,7 +105,10 @@ class LayoutListener implements ListenerAggregateInterface
                 // no layout was scheduled so will fallback to hardcoded layout template
                 $layout = $options->getLayout();
             }
-            $viewModel->setTemplate($layout . '/layout');
+
+            if ($layout) {
+                $viewModel->setTemplate($layout . '/layout');
+            }
         }
     }
 
@@ -123,7 +126,6 @@ class LayoutListener implements ListenerAggregateInterface
                 $this->toDelete[] = $layout->folder;
             }
         }
-        var_dump($this->toDelete);
     }
 
     public function postDelete($event)
