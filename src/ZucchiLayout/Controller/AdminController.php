@@ -70,9 +70,9 @@ class AdminController extends AbstractAdminController
             'success' => false,
             'messages' => array(),
         );
-        
+
         if ($this->request->isPost()) {
-            $uploader = $this->uploader(); 
+            $uploader = $this->uploader();
             
             $uploader->setDestination($path)
                      ->addValidator(new LayoutValidator())
@@ -97,12 +97,15 @@ class AdminController extends AbstractAdminController
             } else {
                 $params['messages'] = array_merge($params['messages'], $uploader->getMessages());
             }
+
+            if ($uploader->hasErrors() || (isset($params['messages']) && count($params['messages']))) {
+                $params['messages'] = $uploader->getMessages();
+            }
+            
         } else {
             $params['messages'] = 'You need to POST your new layout to this url';
         }
-        if ($uploader->hasErrors() || (isset($params['messages']) && count($params['messages']))) {
-            $params['messages'] = $uploader->getMessages();
-        } 
+
         $model = new JsonModel($params);
         return $model;
     }
