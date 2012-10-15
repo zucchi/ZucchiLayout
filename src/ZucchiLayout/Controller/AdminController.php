@@ -72,36 +72,40 @@ class AdminController extends AbstractAdminController
         );
 
         if ($this->request->isPost()) {
-            $uploader = $this->uploader();
-            
-            $uploader->setDestination($path)
-                     ->addValidator(new LayoutValidator())
-                     ->addFilter(new LayoutFilter(array(
-                         'destination' => $path,
-                     )))
-            ;
-            
-            if ($uploader->isValid()) {
-                $params['success'] = $uploader->receive('file');
-            }
+            try {
+                $uploader = $this->uploader();
 
-            if ($params['success']) {
-                    $file = $uploader->getFileInfo()['file'];
-                    $jsonPath = $path . DIRECTORY_SEPARATOR . $file['name'] . DIRECTORY_SEPARATOR .'layout.json';
-                    $reader = new Json();
-                try {
-                    $params['layout'] = $reader->fromFile($jsonPath);
-                } catch (Exception $e) {
-                    $params['messages'] = $e->getMessage();
+                $uploader->setDestination($path)
+                         ->addValidator(new LayoutValidator())
+                         ->addFilter(new LayoutFilter(array(
+                             'destination' => $path,
+                         )))
+                ;
+
+                if ($uploader->isValid()) {
+                    $params['success'] = $uploader->receive('file');
                 }
-            } else {
-                $params['messages'] = array_merge($params['messages'], $uploader->getMessages());
+
+                if ($params['success']) {
+                        $file = $uploader->getFileInfo()['file'];
+                        $jsonPath = $path . DIRECTORY_SEPARATOR . $file['name'] . DIRECTORY_SEPARATOR .'layout.json';
+                        $reader = new Json();
+                    try {
+                        $params['layout'] = $reader->fromFile($jsonPath);
+                    } catch (Exception $e) {
+                        $params['messages'] = $e->getMessage();
+                    }
+                } else {
+                    $params['messages'] = array_merge($params['messages'], $uploader->getMessages());
+                }
+
+                if ($uploader->hasErrors() || (isset($params['messages']) && count($params['messages']))) {
+                    $params['messages'] = $uploader->getMessages();
+                }
+            } catch (Exception $e) {
+                $params['messages'][] = $e->getMessage();
             }
 
-            if ($uploader->hasErrors() || (isset($params['messages']) && count($params['messages']))) {
-                $params['messages'] = $uploader->getMessages();
-            }
-            
         } else {
             $params['messages'] = 'You need to POST your new layout to this url';
         }
