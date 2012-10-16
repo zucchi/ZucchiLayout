@@ -32,7 +32,6 @@ use Zend\Form\Annotation AS Form;
  * @Form\Hydrator("\Zend\Stdlib\Hydrator\ObjectProperty")
  * @Form\Options({
  *     "bootstrap": {
- *         "displayAs":"tableRow",
  *         "buttons" : {
  *              "tableHead" : {
  *                  "add" : {

@@ -211,7 +211,7 @@ class Layout extends AbstractEntity
      * )
      * @ORM\OrderBy({"displayFrom" = "ASC"})
      * @Form\Type("Zend\Form\Element\Collection")
-     * @Form\Attributes({"class":"table table-hover table-condensed table-bordered"})
+     * @Form\Attributes({"class":"table table-hover table-condensed", "style": "background-color:#FFF"})
      * @Form\Options({
      *     "label" : "Schedule",
      *     "bootstrap": {
