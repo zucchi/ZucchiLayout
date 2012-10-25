@@ -52,19 +52,6 @@ use Zend\Form\Annotation AS Form;
 class Schedule extends AbstractEntity
 {
     /**
-     * users unique id
-     * 
-     * @var integer
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Form\Required(false)
-     * @Form\Attributes({"type":"hidden"})
-     * @Form\Filter({"name": "Zucchi\Filter\Cast\Integer"})
-     */
-    public $id;
-
-    /**
      * Layout this schedule entry is associated with
      *
      * @var array
@@ -75,7 +62,7 @@ class Schedule extends AbstractEntity
      * @Form\Attributes({"type":"hidden", "name":"Layout"})
      * @Form\Filter({"name": "Zucchi\Filter\Cast\Integer"})
      */
-    public $Layout;
+    protected $Layout;
 
     /**
      * When layout is to be displayed from
@@ -88,7 +75,7 @@ class Schedule extends AbstractEntity
      *     "label":"From",
      * })
      */
-    public $displayFrom;
+    protected $displayFrom;
 
     /**
      * when layout is to STOP being displayed
@@ -101,6 +88,6 @@ class Schedule extends AbstractEntity
      *     "label":"Till",
      * })
      */
-    public $displayTill;
+    protected $displayTill;
 
 }

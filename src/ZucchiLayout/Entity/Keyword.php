@@ -34,24 +34,11 @@ use Zend\Form\Annotation AS Form;
 class Keyword extends AbstractEntity
 {
     /**
-     * users unique id
-     * 
-     * @var integer
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Form\Required(false)
-     * @Form\Attributes({"type":"hidden"})
-     * @Form\Filter({"name": "Zucchi\Filter\Cast\Integer"})
-     */
-    public $id;
-    
-    /**
      * 
      * @var string
      * @ORM\Column(type="string")
      */
-    public $value;
+    protected $value;
     
     /**
      * 
@@ -59,5 +46,5 @@ class Keyword extends AbstractEntity
      * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout")
      * @ORM\JoinColumn(name="Layout_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    public $Layout;
+    protected $Layout;
 }

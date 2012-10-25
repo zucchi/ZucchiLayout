@@ -38,19 +38,6 @@ class Layout extends AbstractEntity
     use TimestampableTrait;
 
     /**
-     * users unique id
-     * 
-     * @var integer
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Form\Required(false)
-     * @Form\Attributes({"type":"hidden"})
-     * @Form\Filter({"name": "Zucchi\Filter\Cast\Integer"})
-     */
-    public $id;
-
-    /**
      * 
      * @var string
      * @ORM\Column(type="string")
@@ -67,7 +54,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $name;
+    protected $name;
     
     /**
      * 
@@ -86,7 +73,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $vendor;
+    protected $vendor;
     
     /**
      * 
@@ -106,7 +93,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $folder;
+    protected $folder;
     
     /**
      * 
@@ -125,7 +112,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $description;
+    protected $description;
     
     /**
      * 
@@ -144,7 +131,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $homepage;
+    protected $homepage;
     
     /**
      * 
@@ -163,7 +150,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $license;
+    protected $license;
 
     /**
      *
@@ -183,7 +170,7 @@ class Layout extends AbstractEntity
      *     }
      * })
      */
-    public $active;
+    protected $active;
     
     /**
      * 
@@ -191,7 +178,7 @@ class Layout extends AbstractEntity
      * @ORM\OneToMany(targetEntity="ZucchiLayout\Entity\Keyword", mappedBy="Layout")
      * @Form\Exclude
      */
-    public $Keywords;
+    protected $Keywords;
     
     /**
      * 
@@ -199,7 +186,7 @@ class Layout extends AbstractEntity
      * @ORM\OneToMany(targetEntity="ZucchiLayout\Entity\Author", mappedBy="Layout")
      * @Form\Exclude
      */
-    public $Authors;
+    protected $Authors;
 
     /**
      * @var PersistantCollection
@@ -226,5 +213,5 @@ class Layout extends AbstractEntity
      *      }
      * })
      */
-    public $Schedule;
+    protected $Schedule;
 }

@@ -41,40 +41,26 @@ use Zend\Form\Annotation AS Form;
  */
 class Author extends AbstractEntity
 {
-    
     /**
-     * users unique id
      * 
-     * @var integer
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Form\Required(false)
-     * @Form\Attributes({"type":"hidden"})
-     * @Form\Filter({"name": "Zucchi\Filter\Cast\Integer"})
+     * @var string
+     * @ORM\Column(type="string")
      */
-    public $id;
+    protected $name;
     
     /**
      * 
      * @var string
      * @ORM\Column(type="string")
      */
-    public $name;
-    
-    /**
-     * 
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    public $email;
+    protected $email;
     
     /**
      * 
      * @var unknown_type
      * @ORM\Column(type="string")
      */
-    public $homepage;
+    protected $homepage;
     
     /**
      * 
@@ -82,5 +68,5 @@ class Author extends AbstractEntity
      * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout")
      * @ORM\JoinColumn(name="Layout_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    public $Layout;
+    protected $Layout;
 }
