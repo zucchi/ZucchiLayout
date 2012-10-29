@@ -30,7 +30,7 @@ use ZucchiDoctrine\Form\Annotation as DoctrineForm;
  * @ORM\Table(name="zucchi_layout")
  * @ORM\HasLifecycleCallbacks
  * @Form\Name("layout")
- * @Form\Hydrator("\Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Form\Hydrator("zucchidoctrine.entityhydrator")
  */
 class Layout extends AbstractEntity
 {

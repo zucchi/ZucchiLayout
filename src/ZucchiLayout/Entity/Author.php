@@ -37,7 +37,7 @@ use Zend\Form\Annotation AS Form;
  * @ORM\Table(name="zucchi_layout_authors")
  * @ORM\HasLifecycleCallbacks
  * @Form\Name("layout")
- * @Form\Hydrator("\Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Form\Hydrator("zucchidoctrine.entityhydrator")
  */
 class Author extends AbstractEntity
 {

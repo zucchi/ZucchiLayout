@@ -29,7 +29,7 @@ use Zend\Form\Annotation AS Form;
  * @ORM\Table(name="zucchi_layout_keywords")
  * @ORM\HasLifecycleCallbacks
  * @Form\Name("layout_keywords")
- * @Form\Hydrator("\Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Form\Hydrator("zucchidoctrine.entityhydrator")
  */
 class Keyword extends AbstractEntity
 {

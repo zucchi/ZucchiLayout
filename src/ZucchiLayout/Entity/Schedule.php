@@ -29,7 +29,7 @@ use Zend\Form\Annotation AS Form;
  * @ORM\Table(name="zucchi_layout_schedules")
  * @ORM\HasLifecycleCallbacks
  * @Form\Name("layout_schedules")
- * @Form\Hydrator("\Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Form\Hydrator("zucchidoctrine.entityhydrator")
  * @Form\Options({
  *     "bootstrap": {
  *         "buttons" : {
