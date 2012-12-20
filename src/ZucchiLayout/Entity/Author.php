@@ -65,7 +65,7 @@ class Author extends AbstractEntity
     /**
      * 
      * @var array
-     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout")
+     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout", inversedBy="Authors")
      * @ORM\JoinColumn(name="Layout_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $Layout;

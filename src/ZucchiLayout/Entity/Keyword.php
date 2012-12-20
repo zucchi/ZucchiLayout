@@ -43,7 +43,7 @@ class Keyword extends AbstractEntity
     /**
      * 
      * @var array
-     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout")
+     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout", inversedBy="Keywords")
      * @ORM\JoinColumn(name="Layout_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $Layout;

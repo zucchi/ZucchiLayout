@@ -55,7 +55,7 @@ class Schedule extends AbstractEntity
      * Layout this schedule entry is associated with
      *
      * @var array
-     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout")
+     * @ORM\ManyToOne(targetEntity="ZucchiLayout\Entity\Layout", inversedBy="Schedule")
      * @ORM\JoinColumn(name="Layout_id", referencedColumnName="id", onDelete="CASCADE")
      * @Form\Exclude
      * @Form\Required(false)
