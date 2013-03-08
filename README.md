@@ -12,6 +12,7 @@ From the root of your ZF2 Skeleton Application run
     
 This module will require your vhost to use an AliasMatch
 
+    AliasMatch /_layout/([^/]+)/(.+)\.png /path/to/project/data/zucchi/layout/$1/$2.png
     AliasMatch /_layout/([^/]+)/([^/]+)/(.+) /path/to/project/data/zucchi/layout/$1/assets/$2/$3
 
 This will result in you being able to generate urls such as "/_layout/zucchi-simple/css/style.css"

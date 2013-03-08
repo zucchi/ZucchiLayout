@@ -69,7 +69,7 @@ class Schedule extends AbstractEntity
      *
      * @var Datetime
      * @ORM\Column(type="datetime")
-     * @Form\Required(true)
+     * @Form\Required(false)
      * @Form\Attributes({"type":"datetime"})
      * @Form\Options({
      *     "label":"From",
@@ -82,7 +82,7 @@ class Schedule extends AbstractEntity
      *
      * @var Datetime
      * @ORM\Column(type="datetime")
-     * @Form\Required(true)
+     * @Form\Required(false)
      * @Form\Attributes({"type":"datetime"})
      * @Form\Options({
      *     "label":"Till",

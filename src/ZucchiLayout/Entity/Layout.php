@@ -197,6 +197,7 @@ class Layout extends AbstractEntity
      *      orphanRemoval=true
      * )
      * @ORM\OrderBy({"displayFrom" = "ASC"})
+     * @Form\Required(false)
      * @Form\Type("Zend\Form\Element\Collection")
      * @Form\Attributes({"class":"table table-hover table-condensed", "style": "background-color:#FFF"})
      * @Form\Options({
