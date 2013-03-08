@@ -1,7 +1,7 @@
 <?php
 namespace ZucchiLayout\Validator;
 
-use Zucchi\Archive\AdapterAwareTrait;
+use ZucchiArchive\AdapterAwareTrait;
 use Zend\Validator\AbstractValidator;
 use Zend\Json\Json;
 

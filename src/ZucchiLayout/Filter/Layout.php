@@ -1,8 +1,8 @@
 <?php
 namespace ZucchiLayout\Filter;
 
-use Zucchi\Archive\AdapterAwareTrait;
-use Zucchi\Archive\Adapter;
+use ZucchiArchive\AdapterAwareTrait;
+use ZucchiArchive\Adapter;
 use Zend\Filter\AbstractFilter;
 use Zend\Json\Json;
 
